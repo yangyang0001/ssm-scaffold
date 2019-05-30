@@ -11,8 +11,8 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
        default-autowire="byName">
 
-    <dubbo:application name="yangtest"  />
-    <dubbo:registry protocol="zookeeper" file="d:/dubbo.cache"
+    <!-- 注意group属性的使用 -->
+    <dubbo:registry protocol="zookeeper" file="d:/dubbo.cache" group="dubbo-dev"
                     address="192.168.120.110:2181,192.168.120.150:2181,192.168.120.224:2181,192.168.120.137:2181" timeout="20000"/>
 
     <import resource="classpath*:META-INF/client/user-consumer.xml"/>

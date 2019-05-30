@@ -2,6 +2,8 @@ package com.gupao.edu.controller;
 
 import com.gupao.edu.controller.support.ResponseData;
 import com.gupao.edu.controller.support.ResponseEnum;
+import com.inspur.dubbo.entity.OrderRequest;
+import com.inspur.dubbo.service.OrderQueryService;
 import com.inspur.dubbo.service.OrderService;
 import com.inspur.dubbo.user.dto.UserLoginRequest;
 import com.inspur.dubbo.user.dto.UserLoginResponse;
@@ -45,6 +47,15 @@ public class IndexController extends BaseController{
     @RequestMapping(value="/submitLogin",method=RequestMethod.POST)
     @ResponseBody
     public ResponseData submitLogin(HttpServletRequest request,String loginname,String password){
+
+        //另外演示JTA的东西,用Atomikos演示
+        OrderRequest orderRequest = new OrderRequest();
+        orderRequest.setName("orderName");
+        orderService.doOrder(orderRequest);
+
+        /**
+         * 演示登录的过程
+         */
         UserLoginRequest request1= new UserLoginRequest();
         request1.setName(loginname);
         request1.setPassword(password);
